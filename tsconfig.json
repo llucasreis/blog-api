@@ -9,6 +9,12 @@
     "baseUrl": "./src",
     "allowJs": true,
     "paths": {
+      "@infra/*": [
+        "infra/*"
+      ],
+      "@main/*": [
+        "main/*"
+      ],
       "@modules/*": [
         "modules/*"
       ],
