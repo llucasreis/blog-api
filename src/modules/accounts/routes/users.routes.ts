@@ -1,3 +1,4 @@
+import DeleteUserControllerFactory from '@main/factories/controllers/DeleteUserControllerFactory';
 import GetUserControllerFactory from '@main/factories/controllers/GetUserControllerFactory';
 import ListUsersControllerFactory from '@main/factories/controllers/ListUsersControllerFactory';
 import { celebrate } from 'celebrate';
@@ -11,6 +12,7 @@ const usersRouter = Router();
 const createUserController = CreateUserControllerFactory();
 const listUsersController = ListUsersControllerFactory();
 const getUserController = GetUserControllerFactory();
+const deleteUserController = DeleteUserControllerFactory();
 
 usersRouter.get(
   '/',
@@ -28,6 +30,12 @@ usersRouter.post(
   '/',
   celebrate(createUserValidation),
   createUserController.handle.bind(createUserController),
+);
+
+usersRouter.delete(
+  '/me',
+  ensureAutheticated,
+  deleteUserController.handle.bind(deleteUserController),
 );
 
 export default usersRouter;

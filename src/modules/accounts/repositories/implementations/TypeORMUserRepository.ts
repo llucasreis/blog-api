@@ -45,4 +45,8 @@ export default class TypeORMUserRepository implements UsersRepository {
     console.log(users);
     return users;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
 }

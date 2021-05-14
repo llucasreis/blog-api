@@ -7,4 +7,5 @@ export default interface UsersRepository {
   findByEmail(email: string): Promise<User | undefined>;
   findById(id: string): Promise<User | undefined>;
   findAll(): Promise<User[]>;
+  delete(id: string): Promise<void>;
 }
