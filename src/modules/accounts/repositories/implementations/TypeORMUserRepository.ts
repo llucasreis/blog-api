@@ -16,7 +16,7 @@ export default class TypeORMUserRepository implements UsersRepository {
     email,
     password,
     image,
-  }: CreateUserDTO.Params): Promise<void> {
+  }: CreateUserDTO.Params): Promise<User> {
     const user = this.repository.create({
       displayName,
       email,
@@ -24,7 +24,7 @@ export default class TypeORMUserRepository implements UsersRepository {
       image,
     });
 
-    await this.repository.save(user);
+    return this.repository.save(user);
   }
 
   async findByEmail(email: string): Promise<User | undefined> {

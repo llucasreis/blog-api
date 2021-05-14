@@ -4,3 +4,7 @@ export interface Params {
   password: string;
   image: string;
 }
+
+export interface Result {
+  token: string;
+}

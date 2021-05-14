@@ -10,13 +10,13 @@ export default class CreateUserController {
     const { displayName, email, password, image } =
       request.body as CreateUserDTO.Params;
 
-    await this.useCase.execute({
+    const { token } = await this.useCase.execute({
       displayName,
       email,
       password,
       image,
     });
 
-    return response.status(201).send();
+    return response.status(201).json({ token });
   }
 }

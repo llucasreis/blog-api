@@ -3,6 +3,6 @@ import User from '@modules/accounts/entities/User';
 import * as CreateUserDTO from '../../useCases/CreateUser/CreateUserDTO';
 
 export default interface UsersRepository {
-  create(data: CreateUserDTO.Params): Promise<void>;
+  create(data: CreateUserDTO.Params): Promise<User>;
   findByEmail(email: string): Promise<User | undefined>;
 }
