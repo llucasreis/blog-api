@@ -5,7 +5,7 @@ import usersRouter from '../../modules/accounts/routes/users.routes';
 
 const router = Router();
 
-router.use('/users', usersRouter);
+router.use('/user', usersRouter);
 router.use(sessionsRouter);
 
 export default router;
