@@ -1,7 +1,7 @@
-import DeleteUserController from '@modules/accounts/useCases/DeleteUser/DeleteUserController';
-import DeleteUserUseCase from '@modules/accounts/useCases/DeleteUser/DeleteUserUseCase';
+import UsersRepositoryFactory from '@main/factories/repositories/UsersRepositoryFactory';
 
-import UsersRepositoryFactory from '../repositories/UsersRepositoryFactory';
+import DeleteUserController from './DeleteUserController';
+import DeleteUserUseCase from './DeleteUserUseCase';
 
 export default function DeleteUserControllerFactory(): DeleteUserController {
   const usersRepository = UsersRepositoryFactory();

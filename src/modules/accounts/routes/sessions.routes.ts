@@ -1,7 +1,7 @@
-import AuthenticateUserControllerFactory from '@main/factories/controllers/AuthenticateUserControllerFactory';
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
 
+import AuthenticateUserControllerFactory from '../useCases/AuthenticateUser';
 import authenticateUserValidation from '../useCases/AuthenticateUser/AuthenticateUserValidation';
 
 const sessionsRouter = Router();

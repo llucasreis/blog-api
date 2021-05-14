@@ -1,7 +1,7 @@
-import GetUserController from '@modules/accounts/useCases/GetUser/GetUserController';
-import GetUserUseCase from '@modules/accounts/useCases/GetUser/GetUserUseCase';
+import UsersRepositoryFactory from '@main/factories/repositories/UsersRepositoryFactory';
 
-import UsersRepositoryFactory from '../repositories/UsersRepositoryFactory';
+import GetUserController from './GetUserController';
+import GetUserUseCase from './GetUserUseCase';
 
 export default function GetUserControllerFactory(): GetUserController {
   const usersRepository = UsersRepositoryFactory();

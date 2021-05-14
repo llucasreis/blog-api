@@ -1,9 +1,8 @@
 import authConfig from '@main/config/auth';
 import UsersRepository from '@modules/accounts/repositories/contracts/UsersRepository';
+import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
 import { sign } from 'jsonwebtoken';
-import HashProvider from 'providers/HashProvider/contracts/HashProvider';
-
-import AppError from '@shared/errors/AppError';
+import AppError from 'presentation/errors/AppError';
 
 import { Result } from '../CreateUser/CreateUserDTO';
 import { Params } from './AuthenticateUserDTO';
@@ -11,7 +10,7 @@ import { Params } from './AuthenticateUserDTO';
 export default class AuthenticateUserUseCase {
   constructor(
     private usersRepository: UsersRepository,
-    private hashProvider: HashProvider,
+    private hashAdapter: HashAdapter,
   ) {}
 
   async execute({ email, password }: Params): Promise<Result> {
@@ -21,7 +20,7 @@ export default class AuthenticateUserUseCase {
       throw new AppError('Campos inválidos');
     }
 
-    const passwordMatched = this.hashProvider.compareHash(
+    const passwordMatched = this.hashAdapter.compareHash(
       password,
       user.password,
     );

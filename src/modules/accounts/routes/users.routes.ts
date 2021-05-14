@@ -1,12 +1,12 @@
-import DeleteUserControllerFactory from '@main/factories/controllers/DeleteUserControllerFactory';
-import GetUserControllerFactory from '@main/factories/controllers/GetUserControllerFactory';
-import ListUsersControllerFactory from '@main/factories/controllers/ListUsersControllerFactory';
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
-import CreateUserControllerFactory from 'main/factories/controllers/CreateUserControllerFactory';
 import ensureAutheticated from 'presentation/middlewares/ensureAuthenticated';
 
+import CreateUserControllerFactory from '../useCases/CreateUser';
 import createUserValidation from '../useCases/CreateUser/CreateUserValidation';
+import DeleteUserControllerFactory from '../useCases/DeleteUser';
+import GetUserControllerFactory from '../useCases/GetUser';
+import ListUsersControllerFactory from '../useCases/ListUsers';
 
 const usersRouter = Router();
 const createUserController = CreateUserControllerFactory();

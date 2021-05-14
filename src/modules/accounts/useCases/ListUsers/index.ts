@@ -1,7 +1,7 @@
-import ListUsersController from '@modules/accounts/useCases/ListUsers/ListUsersController';
-import ListUsersUseCase from '@modules/accounts/useCases/ListUsers/ListUsersUseCase';
+import UsersRepositoryFactory from '@main/factories/repositories/UsersRepositoryFactory';
 
-import UsersRepositoryFactory from '../repositories/UsersRepositoryFactory';
+import ListUsersController from './ListUsersController';
+import ListUsersUseCase from './ListUsersUseCase';
 
 export default function ListUsersControllerFactory(): ListUsersController {
   const usersRepository = UsersRepositoryFactory();
