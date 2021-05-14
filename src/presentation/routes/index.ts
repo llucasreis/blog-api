@@ -1,3 +1,4 @@
+import sessionsRouter from '@modules/accounts/routes/sessions.routes';
 import { Router } from 'express';
 
 import usersRouter from '../../modules/accounts/routes/users.routes';
@@ -5,5 +6,6 @@ import usersRouter from '../../modules/accounts/routes/users.routes';
 const router = Router();
 
 router.use('/users', usersRouter);
+router.use(sessionsRouter);
 
 export default router;
