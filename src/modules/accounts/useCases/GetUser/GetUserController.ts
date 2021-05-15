@@ -8,7 +8,7 @@ export default class GetUserController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const user = await this.useCase.execute(id);
+    const user = await this.useCase.execute(parseInt(id, 10));
 
     return response.status(200).send(classToClass(user));
   }

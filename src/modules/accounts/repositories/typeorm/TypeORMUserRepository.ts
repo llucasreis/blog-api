@@ -34,7 +34,7 @@ export default class TypeORMUserRepository implements UsersRepository {
     return user;
   }
 
-  async findById(id: string): Promise<User | undefined> {
+  async findById(id: number): Promise<User | undefined> {
     const user = await this.repository.findOne(id);
 
     return user;
@@ -46,7 +46,7 @@ export default class TypeORMUserRepository implements UsersRepository {
     return users;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }
 }

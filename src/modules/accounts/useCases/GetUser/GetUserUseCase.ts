@@ -5,7 +5,7 @@ import AppError from 'presentation/errors/AppError';
 export default class GetUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute(id: string): Promise<User> {
+  async execute(id: number): Promise<User> {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
