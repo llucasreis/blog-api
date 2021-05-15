@@ -49,4 +49,8 @@ export default class TypeORMPostsRepository implements PostsRepository {
     });
     return updatedPost;
   }
+
+  async delete(id: number): Promise<void> {
+    await this.repository.delete(id);
+  }
 }

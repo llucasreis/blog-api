@@ -4,6 +4,7 @@ import ensureAutheticated from 'presentation/middlewares/ensureAuthenticated';
 
 import CreatePostControllerFactory from '../useCases/CreatePost';
 import createPostValidation from '../useCases/CreatePost/CreatePostValidation';
+import DeletePostControllerFactory from '../useCases/DeletePost';
 import GetPostControllerFactory from '../useCases/GetPost';
 import ListPostsControllerFactory from '../useCases/ListPosts';
 import UpdatePostControllerFactory from '../useCases/UpdatePost';
@@ -14,6 +15,7 @@ const createPostController = CreatePostControllerFactory();
 const listPostsController = ListPostsControllerFactory();
 const getPostsController = GetPostControllerFactory();
 const updatePostController = UpdatePostControllerFactory();
+const deletePostController = DeletePostControllerFactory();
 
 postsRouter.get(
   '/',
@@ -39,6 +41,12 @@ postsRouter.put(
   ensureAutheticated,
   celebrate(updatePostValidation),
   updatePostController.handle.bind(updatePostController),
+);
+
+postsRouter.delete(
+  '/:id',
+  ensureAutheticated,
+  deletePostController.handle.bind(deletePostController),
 );
 
 export default postsRouter;

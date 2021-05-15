@@ -8,4 +8,5 @@ export default interface PostsRepository {
   findById(id: number): Promise<Post | undefined>;
   findAll(): Promise<Post[]>;
   update(post: Post, data: UpdatePostDTO.Params): Promise<Post>;
+  delete(id: number): Promise<void>;
 }
