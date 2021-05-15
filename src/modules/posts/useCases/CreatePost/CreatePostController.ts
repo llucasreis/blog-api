@@ -1,4 +1,4 @@
-import { classToClass } from 'class-transformer';
+import PostMapper from '@modules/posts/mappers/PostMapper';
 import { Request, Response } from 'express';
 
 import { Params } from './CreatePostDTO';
@@ -17,6 +17,6 @@ export default class CreatePostController {
       userId,
     });
 
-    return response.status(201).send(classToClass(post));
+    return response.status(201).send(PostMapper.toSimpleDTO(post));
   }
 }

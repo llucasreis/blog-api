@@ -13,7 +13,6 @@ import {
 @Entity('posts')
 export default class Post {
   @PrimaryGeneratedColumn()
-  @Exclude()
   id: string;
 
   @Column()
@@ -23,6 +22,7 @@ export default class Post {
   content: string;
 
   @Column()
+  @Exclude()
   userId: number;
 
   @ManyToOne(() => User)
@@ -30,10 +30,8 @@ export default class Post {
   user: User;
 
   @CreateDateColumn()
-  @Exclude()
   published: Date;
 
   @UpdateDateColumn()
-  @Exclude()
   updated: Date;
 }
