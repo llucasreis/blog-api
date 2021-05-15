@@ -53,4 +53,14 @@ export default class TypeORMPostsRepository implements PostsRepository {
   async delete(id: number): Promise<void> {
     await this.repository.delete(id);
   }
+
+  async search(searchTerm: string): Promise<Post[]> {
+    const posts = await this.repository
+      .createQueryBuilder('post')
+      .where('LOWER(post.title) = LOWER(:title)', { title: searchTerm })
+      .orWhere('LOWER(post.content) = LOWER(:content)', { content: searchTerm })
+      .getMany();
+
+    return posts;
+  }
 }

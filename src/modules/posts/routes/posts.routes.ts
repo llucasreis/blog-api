@@ -7,6 +7,7 @@ import createPostValidation from '../useCases/CreatePost/CreatePostValidation';
 import DeletePostControllerFactory from '../useCases/DeletePost';
 import GetPostControllerFactory from '../useCases/GetPost';
 import ListPostsControllerFactory from '../useCases/ListPosts';
+import SearchPostControllerFactory from '../useCases/SearchPost';
 import UpdatePostControllerFactory from '../useCases/UpdatePost';
 import updatePostValidation from '../useCases/UpdatePost/UpdatePostValidation';
 
@@ -16,11 +17,18 @@ const listPostsController = ListPostsControllerFactory();
 const getPostsController = GetPostControllerFactory();
 const updatePostController = UpdatePostControllerFactory();
 const deletePostController = DeletePostControllerFactory();
+const searchPostController = SearchPostControllerFactory();
 
 postsRouter.get(
   '/',
   ensureAutheticated,
   listPostsController.handle.bind(listPostsController),
+);
+
+postsRouter.get(
+  '/search',
+  ensureAutheticated,
+  searchPostController.handle.bind(searchPostController),
 );
 
 postsRouter.get(
