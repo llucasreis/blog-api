@@ -4,7 +4,7 @@ import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
 import { sign } from 'jsonwebtoken';
 import AppError from 'presentation/errors/AppError';
 
-import * as CreateUserDTO from './CreateUserDTO';
+import { Params, Result } from './CreateUserBoundary';
 
 export default class CreateUserUseCase {
   constructor(
@@ -17,7 +17,7 @@ export default class CreateUserUseCase {
     email,
     password,
     image,
-  }: CreateUserDTO.Params): Promise<CreateUserDTO.Result> {
+  }: Params): Promise<Result> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {

@@ -1,7 +1,7 @@
 import User from '@modules/accounts/entities/User';
 import { getRepository, Repository } from 'typeorm';
 
-import * as CreateUserDTO from '../../useCases/CreateUser/CreateUserDTO';
+import * as CreateUserBoundary from '../../useCases/CreateUser/CreateUserBoundary';
 import UsersRepository from '../contracts/UsersRepository';
 
 export default class TypeORMUserRepository implements UsersRepository {
@@ -16,7 +16,7 @@ export default class TypeORMUserRepository implements UsersRepository {
     email,
     password,
     image,
-  }: CreateUserDTO.Params): Promise<User> {
+  }: CreateUserBoundary.Params): Promise<User> {
     const user = this.repository.create({
       displayName,
       email,

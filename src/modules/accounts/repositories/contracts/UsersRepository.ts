@@ -1,9 +1,9 @@
 import User from '@modules/accounts/entities/User';
 
-import * as CreateUserDTO from '../../useCases/CreateUser/CreateUserDTO';
+import * as CreateUserBoundary from '../../useCases/CreateUser/CreateUserBoundary';
 
 export default interface UsersRepository {
-  create(data: CreateUserDTO.Params): Promise<User>;
+  create(data: CreateUserBoundary.Params): Promise<User>;
   findByEmail(email: string): Promise<User | undefined>;
   findById(id: number): Promise<User | undefined>;
   findAll(): Promise<User[]>;

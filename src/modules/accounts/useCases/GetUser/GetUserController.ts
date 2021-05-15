@@ -1,4 +1,4 @@
-import { classToClass } from 'class-transformer';
+import UserMapper from '@modules/accounts/mappers/UserMapper';
 import { Request, Response } from 'express';
 
 import GetUserUseCase from './GetUserUseCase';
@@ -10,6 +10,6 @@ export default class GetUserController {
     const { id } = request.params;
     const user = await this.useCase.execute(parseInt(id, 10));
 
-    return response.status(200).send(classToClass(user));
+    return response.status(200).send(UserMapper.toDTO(user));
   }
 }

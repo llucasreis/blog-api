@@ -4,8 +4,7 @@ import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
 import { sign } from 'jsonwebtoken';
 import AppError from 'presentation/errors/AppError';
 
-import { Result } from '../CreateUser/CreateUserDTO';
-import { Params } from './AuthenticateUserDTO';
+import { Params, Result } from './AuthenticateUserBoundary';
 
 export default class AuthenticateUserUseCase {
   constructor(

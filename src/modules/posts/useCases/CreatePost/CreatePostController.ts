@@ -1,7 +1,7 @@
 import PostMapper from '@modules/posts/mappers/PostMapper';
 import { Request, Response } from 'express';
 
-import { Params } from './CreatePostDTO';
+import { Params } from './CreatePostBoundary';
 import CreatePostUseCase from './CreatePostUseCase';
 
 export default class CreatePostController {

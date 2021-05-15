@@ -1,6 +1,6 @@
 import PostsRepository from '@modules/posts/repositories/contracts/PostsRepository';
 
-import * as CreatePostDTO from './CreatePostDTO';
+import * as CreatePostBoundary from './CreatePostBoundary';
 
 export default class CreatePostUseCase {
   constructor(private postsRepository: PostsRepository) {}
@@ -9,7 +9,7 @@ export default class CreatePostUseCase {
     title,
     content,
     userId,
-  }: CreatePostDTO.Params): Promise<CreatePostDTO.Result> {
+  }: CreatePostBoundary.Params): Promise<CreatePostBoundary.Result> {
     const post = await this.postsRepository.create({
       title,
       content,

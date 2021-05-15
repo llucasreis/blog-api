@@ -1,6 +1,6 @@
 import Post from '@modules/posts/entities/Post';
-import * as CreatePostDTO from '@modules/posts/useCases/CreatePost/CreatePostDTO';
-import * as UpdatePostDTO from '@modules/posts/useCases/UpdatePost/UpdatePostDTO';
+import * as CreatePostBoundary from '@modules/posts/useCases/CreatePost/CreatePostBoundary';
+import * as UpdatePostBoundary from '@modules/posts/useCases/UpdatePost/UpdatePostBoundary';
 import { getRepository, Repository } from 'typeorm';
 
 import PostsRepository from '../contracts/PostsRepository';
@@ -16,7 +16,7 @@ export default class TypeORMPostsRepository implements PostsRepository {
     title,
     content,
     userId,
-  }: CreatePostDTO.Params): Promise<Post> {
+  }: CreatePostBoundary.Params): Promise<Post> {
     const post = this.repository.create({
       title,
       content,
@@ -42,7 +42,7 @@ export default class TypeORMPostsRepository implements PostsRepository {
     return posts;
   }
 
-  async update(post: Post, data: UpdatePostDTO.Params): Promise<Post> {
+  async update(post: Post, data: UpdatePostBoundary.Params): Promise<Post> {
     const updatedPost = await this.repository.save({
       ...post,
       ...data,

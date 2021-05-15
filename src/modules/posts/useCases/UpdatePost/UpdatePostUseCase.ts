@@ -1,7 +1,7 @@
 import PostsRepository from '@modules/posts/repositories/contracts/PostsRepository';
 import AppError from 'presentation/errors/AppError';
 
-import { RequestParams, Result } from './UpdatePostDTO';
+import { UseCaseParams, Result } from './UpdatePostBoundary';
 
 export default class UpdatePostUseCase {
   constructor(private postsRepository: PostsRepository) {}
@@ -11,7 +11,7 @@ export default class UpdatePostUseCase {
     title,
     content,
     userId,
-  }: RequestParams): Promise<Result> {
+  }: UseCaseParams): Promise<Result> {
     const post = await this.postsRepository.findById(id);
 
     if (!post) {

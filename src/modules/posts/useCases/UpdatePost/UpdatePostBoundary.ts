@@ -5,7 +5,7 @@ export interface Params {
   content: string;
 }
 
-export interface RequestParams {
+export interface UseCaseParams {
   id: number;
   title: string;
   content: string;
