@@ -25,6 +25,14 @@ export default class TypeORMPostsRepository implements PostsRepository {
     return this.repository.save(post);
   }
 
+  async findById(id: number): Promise<Post | undefined> {
+    const user = await this.repository.findOne(id, {
+      relations: ['user'],
+    });
+
+    return user;
+  }
+
   async findAll(): Promise<Post[]> {
     const posts = await this.repository.find({
       relations: ['user'],
