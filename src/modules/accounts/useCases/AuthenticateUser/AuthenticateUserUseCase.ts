@@ -1,7 +1,7 @@
+import HashAdapter from '@adapters/HashAdapter/contracts/HashAdapter';
+import TokenAdapter from '@adapters/TokenAdapter/contracts/TokenAdapter';
 import UsersRepository from '@modules/accounts/repositories/contracts/UsersRepository';
-import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
-import TokenAdapter from 'adapters/TokenAdapter/contracts/TokenAdapter';
-import AppError from 'presentation/errors/AppError';
+import AppError from '@presentation/errors/AppError';
 
 import { Params, Result } from './AuthenticateUserBoundary';
 
@@ -19,7 +19,7 @@ export default class AuthenticateUserUseCase {
       throw new AppError('Campos inválidos');
     }
 
-    const passwordMatched = this.hashAdapter.compareHash(
+    const passwordMatched = await this.hashAdapter.compareHash(
       password,
       user.password,
     );

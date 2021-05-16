@@ -1,8 +1,7 @@
-import authConfig from '@main/config/auth';
+import HashAdapter from '@adapters/HashAdapter/contracts/HashAdapter';
+import TokenAdapter from '@adapters/TokenAdapter/contracts/TokenAdapter';
 import UsersRepository from '@modules/accounts/repositories/contracts/UsersRepository';
-import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
-import { sign } from 'jsonwebtoken';
-import AppError from 'presentation/errors/AppError';
+import AppError from '@presentation/errors/AppError';
 
 import { Params, Result } from './CreateUserBoundary';
 
@@ -10,6 +9,7 @@ export default class CreateUserUseCase {
   constructor(
     private usersRepository: UsersRepository,
     private hashAdapter: HashAdapter,
+    private tokenAdapter: TokenAdapter,
   ) {}
 
   async execute({
@@ -33,10 +33,9 @@ export default class CreateUserUseCase {
       image,
     });
 
-    const { secret, expiresIn } = authConfig.jwt;
-
-    const token = sign({ id: user.id, email: user.email }, secret, {
-      expiresIn,
+    const token = await this.tokenAdapter.encrypt({
+      id: user.id,
+      email: user.email,
     });
 
     return { token };
