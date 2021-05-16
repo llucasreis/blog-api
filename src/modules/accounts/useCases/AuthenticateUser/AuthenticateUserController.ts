@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { Params } from './AuthenticateUserDTO';
+import { Params } from './AuthenticateUserBoundary';
 import AuthenticateUserUseCase from './AuthenticateUserUseCase';
 
 export default class AuthenticateUserController {
