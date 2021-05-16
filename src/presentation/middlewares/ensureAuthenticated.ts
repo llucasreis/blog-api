@@ -1,39 +1,44 @@
-import authConfig from '@main/config/auth';
+import TokenAdapterFactory from '@main/factories/adapters/TokenAdapterFactory';
 import { NextFunction, Request, Response } from 'express';
-import { verify } from 'jsonwebtoken';
 import AppError from 'presentation/errors/AppError';
 
 interface TokenPayload {
-  id: string;
+  id: number;
   email: string;
   iat: number;
   exp: number;
 }
 
-export default function ensureAutheticated(
+export default async function ensureAutheticated(
   request: Request,
   response: Response,
   next: NextFunction,
-): void {
+): Promise<void> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
     throw new AppError('Token não encontrado', 401);
   }
 
-  const [, token] = authHeader.split(' ');
-
   try {
-    const decoded = verify(token, authConfig.jwt.secret);
+    // for Bearer or just simple Authorization
+    const splittedHeader = authHeader.split(' ');
+
+    const token = splittedHeader.length > 1 ? splittedHeader[1] : authHeader;
+
+    const decoded = (await TokenAdapterFactory().decrypt(token)) as object;
 
     const { id, email } = decoded as TokenPayload;
 
-    request.user = {
-      id,
-      email,
-    };
+    if (id && email) {
+      request.user = {
+        id,
+        email,
+      };
 
-    return next();
+      return next();
+    }
+    throw new AppError('Token expirado ou inválido', 401);
   } catch (err) {
     throw new AppError('Token expirado ou inválido', 401);
   }

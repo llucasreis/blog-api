@@ -1,7 +1,6 @@
-import authConfig from '@main/config/auth';
 import UsersRepository from '@modules/accounts/repositories/contracts/UsersRepository';
 import HashAdapter from 'adapters/HashAdapter/contracts/HashAdapter';
-import { sign } from 'jsonwebtoken';
+import TokenAdapter from 'adapters/TokenAdapter/contracts/TokenAdapter';
 import AppError from 'presentation/errors/AppError';
 
 import { Params, Result } from './AuthenticateUserBoundary';
@@ -10,6 +9,7 @@ export default class AuthenticateUserUseCase {
   constructor(
     private usersRepository: UsersRepository,
     private hashAdapter: HashAdapter,
+    private tokenAdapter: TokenAdapter,
   ) {}
 
   async execute({ email, password }: Params): Promise<Result> {
@@ -26,10 +26,9 @@ export default class AuthenticateUserUseCase {
 
     if (!passwordMatched) throw new AppError('Campos inválidos');
 
-    const { secret, expiresIn } = authConfig.jwt;
-
-    const token = sign({ id: user.id, email: user.email }, secret, {
-      expiresIn,
+    const token = await this.tokenAdapter.encrypt({
+      id: user.id,
+      email: user.email,
     });
 
     return { token };
