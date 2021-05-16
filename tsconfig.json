@@ -3,12 +3,18 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDirs": [
+      "./src",
+      "./tests"
+    ],
     "strict": true,
     "strictPropertyInitialization": false,
     "baseUrl": "./src",
     "allowJs": true,
     "paths": {
+      "@adapters/*": [
+        "adapters/*"
+      ],
       "@infra/*": [
         "infra/*"
       ],
@@ -18,11 +24,11 @@
       "@modules/*": [
         "modules/*"
       ],
-      "@config/*": [
-        "config/*"
+      "@presentation/*": [
+        "presentation/*"
       ],
-      "@shared/*": [
-        "shared/*"
+      "@tests/*": [
+        "../tests/*"
       ]
     },
     "esModuleInterop": true,
