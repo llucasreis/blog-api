@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    container_name: blog-api
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    env_file: .env.production
+    networks:
+      - blognetwork
+
+networks:
+  blognetwork:
+    driver: bridge

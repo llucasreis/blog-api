@@ -1,0 +1,32 @@
+FROM node:12 AS builder
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY ["./package.json", "./yarn.lock", "/usr/src/app/"]
+
+RUN yarn install
+
+COPY ["./tsconfig.json", "babel.config.js", "/usr/src/app/"]
+COPY "./src" "/usr/src/app/src/"
+
+RUN yarn build
+
+FROM node:12-alpine
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}}
+
+WORKDIR /usr/app
+
+COPY --from=builder [\
+  "/usr/src/app/package.json", \
+  "/usr/src/app/yarn.lock", \
+  "/usr/app/" \
+  ]
+
+COPY --from=builder "/usr/src/app/dist" "/usr/app/dist"
+
+RUN yarn install --production=true
+
+CMD ["yarn", "start:prod"]
