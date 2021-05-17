@@ -4,13 +4,17 @@ import { Params } from '@modules/accounts/useCases/CreateUser/CreateUserBoundary
 import faker from 'faker';
 
 export default class MockUsersRepository implements UsersRepository {
-  private users: User[] = [];
+  private users: User[];
+
+  constructor() {
+    this.users = [];
+  }
 
   create({ displayName, email, password, image }: Params): Promise<User> {
     const user = new User();
 
     Object.assign(user, {
-      id: faker.datatype.number,
+      id: faker.datatype.number(),
       displayName,
       email,
       password,
@@ -29,7 +33,7 @@ export default class MockUsersRepository implements UsersRepository {
   }
 
   findById(id: number): Promise<User | undefined> {
-    const user = this.users.find(user => user.id === String(id));
+    const user = this.users.find(user => user.id === id);
 
     return new Promise(resolve => resolve(user));
   }
@@ -39,9 +43,9 @@ export default class MockUsersRepository implements UsersRepository {
   }
 
   delete(id: number): Promise<void> {
-    const index = this.users.findIndex(user => user.id === String(id));
+    const index = this.users.findIndex(user => user.id === id);
 
-    this.users = this.users.splice(index, 1);
+    this.users.splice(index, 1);
 
     return new Promise(resolve => resolve());
   }

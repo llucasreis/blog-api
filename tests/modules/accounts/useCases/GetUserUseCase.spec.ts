@@ -22,7 +22,7 @@ describe('GetUser', () => {
       image: 'https://cdn.fakercloud.com/avatars/nyancecom_128.jpg',
     });
 
-    const response = await getUser.execute(parseInt(user.id, 10));
+    const response = await getUser.execute(user.id);
 
     expect(response.displayName).toBe('Lucas Reis');
     expect(response.email).toBe('lucas@gmail.com');
