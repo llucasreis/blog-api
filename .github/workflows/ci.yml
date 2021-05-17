@@ -26,7 +26,7 @@ jobs:
       run: yarn --frozen-lockfile
 
     - name: Run eslint
-      run: eslint . --ext .ts
+      run: yarn run eslint . --ext .ts
 
     - name: Run tests
       run: yarn test
