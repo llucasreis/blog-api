@@ -1,6 +1,6 @@
 import Post from '@modules/posts/entities/Post';
 import PostsRepository from '@modules/posts/repositories/contracts/PostsRepository';
-import AppError from 'presentation/errors/AppError';
+import AppError from '@presentation/errors/AppError';
 
 export default class GetPostUseCase {
   constructor(private postsRepository: PostsRepository) {}

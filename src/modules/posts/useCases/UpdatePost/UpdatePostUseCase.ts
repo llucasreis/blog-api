@@ -1,5 +1,5 @@
 import PostsRepository from '@modules/posts/repositories/contracts/PostsRepository';
-import AppError from 'presentation/errors/AppError';
+import AppError from '@presentation/errors/AppError';
 
 import { UseCaseParams, Result } from './UpdatePostBoundary';
 
