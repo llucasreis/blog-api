@@ -14,6 +14,7 @@ export default class CreatePosts1621104732607 implements MigrationInterface {
           {
             name: 'id',
             type: 'integer',
+            isPrimary: true,
           },
           {
             name: 'title',
