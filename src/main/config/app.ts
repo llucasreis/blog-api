@@ -1,7 +1,7 @@
+import validateErrors from '@presentation/middlewares/validateErrors';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-import validateErrors from 'presentation/middlewares/validateErrors';
 
 import router from '../../presentation/routes';
 

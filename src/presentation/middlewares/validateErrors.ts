@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import AppError from '@presentation/errors/AppError';
 import { isCelebrateError } from 'celebrate';
 import { NextFunction, Request, Response } from 'express';
-import AppError from 'presentation/errors/AppError';
 
 interface CelebrateErrors {
   message: string;
