@@ -4,6 +4,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY ["./package.json", "./yarn.lock", "/usr/src/app/"]
+COPY "ormconfig.js" "/usr/src/app/"
 
 RUN yarn install
 
@@ -22,6 +23,7 @@ WORKDIR /usr/app
 COPY --from=builder [\
   "/usr/src/app/package.json", \
   "/usr/src/app/yarn.lock", \
+  "/usr/src/app/ormconfig.js", \
   "/usr/app/" \
   ]
 
