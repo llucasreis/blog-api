@@ -1,6 +1,6 @@
 import TokenAdapterFactory from '@main/factories/adapters/TokenAdapterFactory';
+import AppError from '@presentation/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
-import AppError from 'presentation/errors/AppError';
 
 interface TokenPayload {
   id: number;

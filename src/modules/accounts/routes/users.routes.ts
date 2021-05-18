@@ -1,6 +1,6 @@
+import ensureAutheticated from '@presentation/middlewares/ensureAuthenticated';
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
-import ensureAutheticated from 'presentation/middlewares/ensureAuthenticated';
 
 import CreateUserControllerFactory from '../useCases/CreateUser';
 import createUserValidation from '../useCases/CreateUser/CreateUserValidation';
