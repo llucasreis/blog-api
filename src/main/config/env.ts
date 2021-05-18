@@ -1,3 +1,3 @@
 export default {
-  port: process.env.API_PORT,
+  port: process.env.PORT,
 };
