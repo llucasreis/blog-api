@@ -1,0 +1,27 @@
+name: CD Worflow
+
+on:
+  workflow_run:
+    workflows: ["CI Worflow"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "lprs-blog-api" 
+          heroku_email: "dev.lucasreis@gmail.com"
+          justlogin: true
+      - run: |
+          heroku container:login
+          docker login --username lprs --password ${{secrets.DOCKER_PASSWORD}}
+          docker build -f Dockerfile.prod -t lprs/blog-api .
+          docker push lprs/blog-api:latest
+          docker tag lprs/blog-api registry.heroku.com/lprs-blog-api/web
+          docker push registry.heroku.com/lprs-blog-api/web
+          heroku container:release web --app lprs-blog-api
