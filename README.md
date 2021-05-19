@@ -59,6 +59,23 @@ docker-compose -f docker-compose-dev.yml up --build
 
 Este comando irá preparar seu ambiente e aplicação estará ouvindo na porta 3333.
 
+### Executando manualmente
+Para executar manualmente a aplicação, você precisa primeiramente ter o PostgreSQL instalado em sua máquina,
+caso prefira ele pode ser instalado através do Docker:
+```
+docker volume create pgdata
+docker run -d --name blog-db -e POSTGRES_USER=postgres POSTGRES_PASSWORD=p0stgr3s -e POSTGRES_DB=blog -v pgdata:/data/postgres
+```
+
+Caso você altere alguma variável de ambiente, é necessário também alterar no seu `.env`.
+
+Após isso, execute os seguintes comandos para inicializar a aplicação:
+```
+yarn install
+
+yarn dev
+```
+
 Por fim, é necessário executar as migrações do sistema para ele criar as tabelas no banco de dados,
 abra um novo terminal dentro da pasta e digite:
 ```
@@ -67,6 +84,11 @@ yarn typeorm migration:run
 
 Se o banco e as variáveis de ambiente estiverem configuradas corretamente, as migrações serão executadas
 com sucesso.
+
+### Executando na nuvem
+
+Caso você não queira executar na sua máquina, a aplicação também está disponível online no Heroku no link:
+https://lprs-blog-api.herokuapp.com/
 
 ## :rocket: Tecnologias utilizadas
 
