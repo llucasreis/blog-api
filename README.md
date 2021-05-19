@@ -102,20 +102,25 @@ com sucesso.
 ## :file_folder: Estrutura de Pastas
 
 - `@types`
+  
 Específico para sobrescrever tipagens de bibliotecas de terceiros
 
 - `adapters`
+  
 Adaptadores de bibliotecas externas. Cada pasta apresenta uma funcionalidades, com `contracts` informando que funções o adaptador possui e as implementações em `implementations` das bibliotecas de fato. Caso for utilizado
 outra biblioteca para a mesma funcionalidade, basta apenas implementar e alterar na `factory` correspondente.
 
 - `infra`
+  
 Implementações relacionadas à infraestrutura da aplicação, atualmente possui apenas as migrações do TypeORM.
 
 - `main`
+  
 Implementações e configurações gerais da aplicação, na pasta `config` temos as configurações da aplicação,
 variáveis de ambiente serão carregadas neste pasta. Em `factories` é gerado instâncias de classes que podem ser utilizadas pelos módulos.
 
 - `modules`
+  
 Nesta pasta se concentra toda a principal implementação da aplicação dividida em dois módulos: `accounts`
 e `posts`, cada um segue uma estrutura interna semelhante.
 
@@ -144,9 +149,11 @@ e `posts`, cada um segue uma estrutura interna semelhante.
 ```
 
 - `presentation`
+  
 Toda implementação que será apresentada para o usuário é chamada nesta pasta, assim temos as `routes`,
  `middlewares` e `errors`.
 
 - `tests`
+  
 Todos os testes estão centralizados nesta pasta. Os `adapters` e `repositories` estão "mockados" para
 os testes unitários, e nas pastas `useCases` temos de fato as implementações dos testes.
